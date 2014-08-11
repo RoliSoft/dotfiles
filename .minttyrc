@@ -1,0 +1,11 @@
+BoldAsFont=no
+Transparency=off
+OpaqueWhenFocused=no
+CursorType=block
+CursorBlinks=no
+ForegroundColour=187,187,187
+CursorColour=0,255,0
+Font=Consolas
+FontHeight=11
+Term=xterm-256color
+RightClickAction=paste
