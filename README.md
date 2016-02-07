@@ -1,6 +1,6 @@
 # RoliSoft’s dotfiles
 
-![Screenshot](http://i.imgur.com/GQujW2R.png)
+![Screenshot](https://i.imgur.com/TKiPm0r.png)
 
 ## Overview
 
