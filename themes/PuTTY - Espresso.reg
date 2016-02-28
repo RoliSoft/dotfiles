@@ -1,11 +1,11 @@
 Windows Registry Editor Version 5.00
 
-; http://putty.org.ru/themes/espresso.html
+; http://putty.org.ru/themes/espresso.html with colour2 modified
 
 [HKEY_CURRENT_USER\Software\SimonTatham\PuTTY\Sessions\Espresso]
 "Colour0"="255,255,255"
 "Colour1"="255,255,255"
-"Colour2"="50,50,50"
+"Colour2"="29,31,33"
 "Colour3"="50,50,50"
 "Colour4"="214,214,214"
 "Colour5"="255,255,255"
