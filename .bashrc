@@ -68,6 +68,7 @@ if [[ $'\n'${match_lhs} == *$'\n'"TERM "${safe_term}* ]] ; then
 		fi
 	fi
 
+	# Replace \w with "'$(pwd="\w";pwd=${pwd/\/cygdrive\/c\/Users\/\u\/Desktop/≈};echo $pwd)'" on Cygwin to display the desktop path as ≈, since I open most terminals to some folder on the desktop, so it might as well represent a "second home."
 	PS1="$(if [[ ${EUID} == 0 ]]; then echo '\[\033[01;31m\]\h'; else echo '\[\033[01;32m\]\u@\h'; fi)\[\033[01;34m\] \w \$([[ \$? != 0 ]] && echo \"\[\033[01;31m\]:(\[\033[01;34m\] \")\\$\[\033[00m\] "
 
 	# Use this other PS1 string if you want \W for root and \w for all other users:
