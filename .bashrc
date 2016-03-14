@@ -13,22 +13,34 @@ if type -P dircolors >/dev/null ; then
 fi
 
 PS1TTL=$(uname -o)
-PS1DIR="\e[33m\w\e[34m"
+PS1DIR="\w"
 
-if [[ ! $PS1TTL =~ (Cygwin|Msys) ]]; then
+if [[ ! ${PS1TTL} =~ (Cygwin|Msys) ]]; then
 	PS1TTL="\u@\h"
-elif [[ $PS1TTL =~ Cygwin ]]; then
-	PS1DIR='$(pwd="\e[33m\w\e[34m";pwd=${pwd/\/cygdrive\/c\/Users\/\u\/Desktop/≈};echo $pwd)'
-elif [[ $PS1TTL =~ Msys ]]; then
+elif [[ ${PS1TTL} =~ Cygwin ]]; then
+	PS1DIR='$(pwd="\w";pwd=${pwd/\/cygdrive\/c\/Users\/\u\/Desktop/≈};echo $pwd)'
+elif [[ ${PS1TTL} =~ Msys ]]; then
 	PS1TTL="MSYS2"
-	PS1DIR='$(pwd="\e[33m\w\e[34m";pwd=${pwd/\/c\/Users\/\u\/Desktop/≈};echo $pwd)'
+	PS1DIR='$(pwd="\w";pwd=${pwd/\/c\/Users\/\u\/Desktop/≈};echo $pwd)'
 fi
 
-PS1="\[\e]0;$PS1TTL \w\a\]$(if [[ ${EUID} == 0 ]]; then echo '\[\033[01;31m\]\h'; else echo '\[\033[01;32m\]\u@\h'; fi)\[\033[01;34m\] $PS1DIR \$([[ \$? != 0 ]] && echo \"\[\033[01;31m\]:(\[\033[01;34m\] \")\\$\[\033[00m\] "
+if [[ ${EUID} == 0 ]]; then
+	PS1USR="\e[91m\h"
+else
+	PS1USR="\e[92m\u@\h"
+fi
+
+__set_exit_code () {
+	EXIT_CODE="$?"
+}
+
+PROMPT_COMMAND=__set_exit_code
+PS1="\[\e]0;$PS1TTL \w\a\]$PS1USR \e[38;5;075m$PS1DIR \$(if [[ \${EXIT_CODE} == 0 ]]; then echo '\e[93m'; else echo '\e[91m'; fi)\\$\e[39m "
 PS2="> "
 PS3="> "
 PS4="+ "
 
+unset PS1USR
 unset PS1TTL
 unset PS1DIR
 
