@@ -25,9 +25,9 @@ elif [[ ${PS1TTL} =~ Msys ]]; then
 fi
 
 if [[ ${EUID} == 0 ]]; then
-	PS1USR="\e[91m\h"
+	PS1USR="\[\e[91m\]\h"
 else
-	PS1USR="\e[92m\u@\h"
+	PS1USR="\[\e[92m\]\u@\h"
 fi
 
 __set_exit_code () {
@@ -35,7 +35,7 @@ __set_exit_code () {
 }
 
 PROMPT_COMMAND=__set_exit_code
-PS1="\[\e]0;$PS1TTL \w\a\]$PS1USR \e[38;5;075m$PS1DIR \$(if [[ \${EXIT_CODE} == 0 ]]; then echo '\e[93m'; else echo '\e[91m'; fi)\\$\e[39m "
+PS1="\[\e]0;$PS1TTL \w\a\]$PS1USR \[\e[38;5;075m\]$PS1DIR \[\$(if [[ \${EXIT_CODE} == 0 ]]; then echo '\e[93m'; else echo '\e[91m'; fi)\]\\$\[\e[39m\] "
 PS2="> "
 PS3="> "
 PS4="+ "
