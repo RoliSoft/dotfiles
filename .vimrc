@@ -26,3 +26,5 @@ set title
 set showcmd
 
 source $VIMRUNTIME/mswin.vim
+
+set keymodel-=stopsel
