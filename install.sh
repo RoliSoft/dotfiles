@@ -1,11 +1,21 @@
 #!/bin/bash
 
+if [[ ! $1 == "-y" ]]; then
+	echo -n -e "This will \e[91moverwrite\e[39m your current dotfiles. Do you want to continue? [yN] "
+	read -n 1 -r
+	echo
+	if [[ ! $REPLY =~ ^[Yy]$ ]]; then
+		exit -1
+	fi
+fi
+
 for f in .*rc .*.conf .*/*.conf; do
-	if [[ -f ~/${f} ]]; then
-		echo -e "\e[34mBacking up \e[93m${f}\e[39m..."
-		mv ~/"${f}" ~/"${f}.old"
+	echo -e "\e[94mInstalling \e[92m${f}\e[39m..."
+	
+	d=$(dirname "${f}")
+	if [[ ${d} != "." ]]; then
+		mkdir -p "~/${d}"
 	fi
 	
-	echo -e "\e[34mInstalling \e[92m${f}\e[39m..."
-	cp "${f}" ~/"${f}"
+	cp "${f}" "~/${f}"
 done
