@@ -47,6 +47,18 @@ unset PS1DIR
 alias ls="ls --color=auto"
 alias grep="grep --color=auto"
 
+man() {
+	LESS_TERMCAP_md=$'\e[01;31m' \
+	LESS_TERMCAP_me=$'\e[0m' \
+	LESS_TERMCAP_se=$'\e[0m' \
+	LESS_TERMCAP_so=$'\e[01;44;33m' \
+	LESS_TERMCAP_ue=$'\e[0m' \
+	LESS_TERMCAP_us=$'\e[01;32m' \
+	command man "$@"
+}
+
 #export LANGUAGE=en_US.UTF-8
 #export LANG=en_US.UTF-8
 #export LC_ALL=en_US.UTF-8
+
+export DISPLAY=:0.0
